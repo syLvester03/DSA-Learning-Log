@@ -100,33 +100,49 @@ class ArrayStack implements Stack_req{
 	
 	public static ArrayStack Merge_stack(ArrayStack x, ArrayStack y) {
 		ArrayStack merged = new ArrayStack(x.size*2); 
-		int x_size = x.size();
-		int y_size = y.size();
-		for(int i=0; i<x_size; i++) {
-			merged.push(y.pop()); 
+		for(int i=x.size-1; i>=0; i--) {
+			merged.push(x.a[i]); 
 		}
-		for(int i=0; i<y_size; i++) {
-			merged.push(x.pop());
+		for(int i=y.size-1; i>=0; i--) {
+			merged.push(y.a[i]);
 		}
 		return merged; 
+	}
+	
+	public boolean Equals(ArrayStack as) {
+		if(this.size != as.size) {
+			return false;
+		}
+		for(int i=0; i<size; i++) {
+			if(!this.a[i].equals(as.a[i])) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public ArrayStack Copy_Stack() {
 		ArrayStack new_stack = new ArrayStack(this.size);
 		for(int i=0; i<size; i++) {
-			new_stack.push(a[i]);
+			new_stack.push(a[i]); 
 		}
 		return new_stack; 
 	}
+	
+	
 }
 
 public class Stack_methods_arr {
 	public static void main(String[] args) {
 		int arr[] = {12,45,87,41,74,96,41,14,74,85,14,747};
 		ArrayStack s1 = new ArrayStack(arr.length + 10);
+		ArrayStack s2 = new ArrayStack(arr.length+10);
 		for(int i=0; i<arr.length; i++) {
 			s1.push(arr[i]);
+			s2.push(arr[i]);
 		}
+//		s2.pop();
+//		System.out.println(s1.Equals(s2));
 //		System.out.println(s1.size());
 //		System.out.println(s1.toString());
 //		s1.pop();
@@ -141,11 +157,10 @@ public class Stack_methods_arr {
 //		LinkedStack ls = s1.toLinkedStack();
 //		System.out.println(ls.toString());
 		
-		ArrayStack[] xs = s1.Divide_Stack();
-		System.out.println(xs[0].toString());
-		System.out.println(xs[1].toString());
-		ArrayStack x = xs[0], y = xs[1];
-		ArrayStack a = ArrayStack.Merge_stack(x, y);
+		ArrayStack[] ax = s1.Divide_Stack();
+		System.out.println(ax[0].toString());
+		System.out.println(ax[1].toString());
+		ArrayStack a = ArrayStack.Merge_stack(ax[0], ax[1]);
 		System.out.println(a.toString());
 
 	}

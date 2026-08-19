@@ -126,7 +126,7 @@ class LinkedStack implements Stack_req{
 		return temp;
 	}
 	
-	public LinkedStack merge_stack(LinkedStack x, LinkedStack y) {
+	public static LinkedStack merge_stack(LinkedStack x, LinkedStack y) {
 		LinkedStack merged = new LinkedStack();
 		for(Node i=x.top; i!=null; i=i.next) {
 			merged.push(i.data);
@@ -135,13 +135,13 @@ class LinkedStack implements Stack_req{
 			merged.push(j.data);
 		}
 		return merged; 
-	}
+	} 
 	
 	public boolean Equals(LinkedStack ls) {
 		if(this.size != ls.size()) {
 			return false;
 		}
-		Node j = ls.top;
+		Node j = ls.top; 
 		for(Node i=top; i!=null; i=i.next) {
 			if(!i.data.equals(j.data)) {
 				return false;
@@ -150,14 +150,28 @@ class LinkedStack implements Stack_req{
 		}
 		return true; 
 	}
+	
+	public LinkedStack Copy_Stack() {
+		LinkedStack temp = new LinkedStack();
+		LinkedStack new_ls = new LinkedStack();
+		for(Node i=this.top; i!=null; i=i.next) {
+			temp.push(i.data);
+		}
+		for(Node j=temp.top; j!=null; j=j.next) {
+			new_ls.push(j.data);
+		}
+		return new_ls;
+	}
 }
 
 public class Stack_methods_ll {
 	public static void main(String[] args) {
 		LinkedStack s1 = new LinkedStack();
+		LinkedStack s2 = new LinkedStack();
 		int[] arr = {12,45,87,41,74,96,41,14,76};
 		for(int i=0; i<arr.length; i++) { 
 			s1.push(arr[i]);
+			s2.push(arr[i]);
 		}
 //		System.out.println(s1.toString());
 //		s1.reverse_org();
@@ -167,10 +181,11 @@ public class Stack_methods_ll {
 //		System.out.println(s1.peek_mid()); 
 //		ArrayStack as = s1.toArrayStack();
 //		System.out.print(as.toString());
-		LinkedStack s2 = s1;
-		System.out.println(s1.Equals(s2));
-//		LinkedStack[] xx = s1.Divide_stack();
-//		System.out.println(xx[0].toString());
-//		System.out.println(xx[1].toString());
+//		System.out.println(s1.Equals(s2));
+		LinkedStack[] lx = s1.Divide_stack();
+		System.out.println(lx[0].toString());
+		System.out.println(lx[1].toString());
+		LinkedStack merged = LinkedStack.merge_stack(lx[0], lx[1]);
+		System.out.println(merged.toString());
 	}
 }
