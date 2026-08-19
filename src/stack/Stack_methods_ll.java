@@ -126,6 +126,17 @@ class LinkedStack implements Stack_req{
 		return temp;
 	}
 	
+	public LinkedStack merge_stack(LinkedStack x, LinkedStack y) {
+		LinkedStack merged = new LinkedStack();
+		for(Node i=x.top; i!=null; i=i.next) {
+			merged.push(i.data);
+		}
+		for(Node j=y.top; j!=null; j=j.next) {
+			merged.push(j.data);
+		}
+		return merged; 
+	}
+	
 	public boolean Equals(LinkedStack ls) {
 		if(this.size != ls.size()) {
 			return false;
@@ -133,7 +144,6 @@ class LinkedStack implements Stack_req{
 		Node j = ls.top;
 		for(Node i=top; i!=null; i=i.next) {
 			if(!i.data.equals(j.data)) {
-				System.out.println("Woah");
 				return false;
 			} 
 			j = j.next; 
