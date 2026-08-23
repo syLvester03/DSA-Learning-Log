@@ -75,18 +75,22 @@ class Node{
 		}
 		System.out.println("");
 	}
-	
-	static Node sublist(Node start, int st, int end) {
-		Node sub_list = null;
-		for(int i=0; i<end; i++) {
-			if(i == st) {
-				sub_list = start;
-			}
-			start = start.next;
-		}
-		start.next = null; 
+
+	static Node sublist(Node s, int start, int end) {
+		if(s == null || start > end || start < 0) {
+			return null; 
+		} 
+		Node sub_list = null, temp = s;
+		int counter = 0;
+		while(temp!=null && counter <= end) {
+			if(counter >= start) {
+				sub_list = Node.Insert(sub_list, temp.data);
+			} 
+			temp = temp.next;
+			counter++;
+		}  
 		return sub_list; 
-	}
+	} 
 	
 	static Node merge(Node s1, Node s2) {
 		Node s3 = null;
@@ -97,6 +101,24 @@ class Node{
 			s3 = Node.Insert(s3, i.data);
 		}
 		return s3;
+	}
+	
+	public static Node[] SplitInHalf(Node s) {
+		if(s==null) {
+			return new Node[] {null, null};
+		}
+		int size=0;
+		for(Node i=s; i!=null; i=i.next) {
+			size++;
+		} 
+		Node temp = s;
+		for(int i=1; i<(size+1)/2; i++) {
+			temp = temp.next;
+		}
+		Node second_half = temp.next;
+		temp.next = null;
+		
+		return new Node[] {s, second_half};
 	}
 	
 	static boolean search(Node s, int x) {
