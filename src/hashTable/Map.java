@@ -1,6 +1,6 @@
 package hashTable;
 
-public interface Hash_Table {
+public interface Map {
 	public int size();
 	public Object get(Object key);
 	public Object put(Object key, Object value);
