@@ -138,7 +138,7 @@ class LinkedStack implements Stack_req{
 	} 
 	
 	public boolean Equals(LinkedStack ls) {
-		if(this.size != ls.size()) {
+		if(this.size != ls.size()) { 
 			return false;
 		}
 		Node j = ls.top; 
