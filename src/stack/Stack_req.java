@@ -5,5 +5,6 @@ public interface Stack_req {
 	public Object pop();
 	public int size();
 	public Object peek();
-} 
+}
 
+   
