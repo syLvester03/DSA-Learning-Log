@@ -88,6 +88,15 @@ public class Recursion {
 		else PrintArrayOfLinkedList(arr, r, c.next); 
 	} 
 	
+	//Tower Of Hanoi
+	public static int towerOfHanoi(int n) {
+		if(n == 1) return 1; 
+		int moves1 = towerOfHanoi(n - 1);
+	    int moves2 = towerOfHanoi(n - 1);
+	    int moves3 = 1;
+	    return moves1 + moves2 + moves3; 
+	}
+	
 	
 	public static void main(String[] args) { 
 //		System.out.println(Recursion.factRecursive(5));
@@ -128,7 +137,9 @@ public class Recursion {
 //		System.out.println();
 //		Recursion.printLinkedListReversed(n);
 		
-		Node[] arr = {n,m};
-		Recursion.PrintArrayOfLinkedList(arr, 0, arr[0]); 
+//		Node[] arr = {n,m};
+//		Recursion.PrintArrayOfLinkedList(arr, 0, arr[0]); 
+		
+		System.out.println(Recursion.towerOfHanoi(5));
 	}
 }
